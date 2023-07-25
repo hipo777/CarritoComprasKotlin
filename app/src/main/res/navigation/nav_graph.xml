@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/itemProductos">
+
+    <fragment
+        android:id="@+id/itemProductos"
+        android:name="org.demre.carritocompraskotlin.vista.ItemProductoFragment"
+        android:label="fragment_item_products"
+        tools:layout="@layout/fragment_item_producto" >
+        <action
+            android:id="@+id/action_itemProducts_to_itemSingleProduct"
+            app:destination="@id/Producto" />
+        <action
+            android:id="@+id/action_itemProducts_to_cart"
+            app:destination="@id/listaCarrito" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/Producto"
+        android:name="org.demre.carritocompraskotlin.vista.ProductoFragment"
+        android:label="fragment_item_single_product"
+        tools:layout="@layout/fragment_producto" >
+        <argument
+            android:name="Name"
+            app:argType="string" />
+        <argument
+            android:name="Price"
+            app:argType="float" />
+        <argument
+            android:name="url"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_itemSingleProduct_to_cart"
+            app:destination="@id/listaCarrito"
+            />
+        <action
+            android:id="@+id/action_itemSingleProduct_to_itemProducts"
+            app:destination="@id/itemProductos"
+
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/listaCarrito"
+        android:name="org.demre.carritocompraskotlin.vista.CarritoFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_carrito" >
+        <action
+            android:id="@+id/action_cart_to_itemProducts"
+            app:destination="@id/itemProductos" />
+    </fragment>
+</navigation>
