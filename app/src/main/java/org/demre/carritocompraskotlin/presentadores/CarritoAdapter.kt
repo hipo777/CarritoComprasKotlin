@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import coil.load
 import org.demre.carritocompraskotlin.R
 import org.demre.carritocompraskotlin.databinding.CarritoItemLayoutBinding
 import org.demre.carritocompraskotlin.modelos.AdministrarSharedPreferences
@@ -72,7 +72,7 @@ class CarritoAdapter (private val contexto: Context,
         fun entregar(producto: Producto) {
             binding.txtProductName.text = producto.name
             binding.txtProductPrice.text = String.format("%.2f", producto.price)
-            Glide.with(binding.imgViewCart.context).load(producto.url).into(binding.imgViewCart)
+            binding.imgViewCart.load(producto.url)
         }
 
         //Esta función es responsable de eliminar un producto del carrito de compras

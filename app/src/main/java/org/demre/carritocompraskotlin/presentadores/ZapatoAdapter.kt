@@ -5,11 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import coil.load
 import org.demre.carritocompraskotlin.R
 import org.demre.carritocompraskotlin.databinding.ZapatoItemBinding
 import org.demre.carritocompraskotlin.modelos.DataClassZapatos
-
 class ZapatosAdapter(private val listaZapatos: List<DataClassZapatos>): RecyclerView.Adapter<ZapatosAdapter.ZapatosViewHolder>() {
 
     //Esta función crea un nuevo ZapatosViewHolder para cada elemento en la lista de zapatos
@@ -35,11 +34,7 @@ class ZapatosAdapter(private val listaZapatos: List<DataClassZapatos>): Recycler
         fun mostrarZapato(zapato: DataClassZapatos) {
             binding.txtNombre.text = zapato.nombre
             binding.txtPrecio.text = zapato.precio.toString()
-
-            Glide.with(binding.imgView.context)
-                .load(zapato.url)
-                .into(binding.imgView)
-
+            binding.imgView.load(zapato.url)
             itemView.setOnClickListener {
                 val action = org.demre.carritocompraskotlin.vista.ItemProductoFragmentDirections.actionItemProductsToItemSingleProduct(zapato.nombre, zapato.precio.toFloat(), zapato.url)
                 Navigation.findNavController(view).navigate(action)

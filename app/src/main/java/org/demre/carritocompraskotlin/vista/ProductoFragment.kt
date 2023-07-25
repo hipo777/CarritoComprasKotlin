@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import com.bumptech.glide.Glide
+import coil.load
 import org.demre.carritocompraskotlin.databinding.FragmentProductoBinding
 import org.demre.carritocompraskotlin.modelos.AdministrarSharedPreferences
 
@@ -19,23 +19,17 @@ class ProductoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
+
         binding = FragmentProductoBinding.inflate(inflater, container, false)
         val nombreZapato = argumento.Name
         val urlZapato = argumento.url
         val precioZapato = argumento.Price
         binding.txtItemNombre.text = nombreZapato
         binding.txtPrecio.text = precioZapato.toString()
-        
-        Glide.with(binding.imgViewProduct.context)
-            .load(urlZapato)
-            .into(binding.imgViewProduct)
-
-
+        binding.imgViewProduct.load(urlZapato)
         binding.btnAgregar.setOnClickListener {
             guardarDatos()
         }
-
 
         return binding.root
     }
